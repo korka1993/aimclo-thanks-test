@@ -1,137 +1,156 @@
-/* Aim clo — minimal thank-you page (no JS, no external assets) */
-
 :root {
   --bg: #ffffff;
-  --text: #0b0b0b;
-  --muted: #6f6f6f;
-  --line: #e7e7e7;
-  --btn: #0b0b0b;
-  --btnText: #ffffff;
-  --focus: #0b0b0b;
-  --radius: 16px;
+  --text: #212529;
+  --muted: #62666b;
+  --line: #dedede;
+  --accent-line: #f2f2f2;
+  --button-bg: #000000;
+  --button-text: #ffffff;
+  --button-bg-hover: #1a1a1a;
+  --focus-ring: #000000;
   --maxw: 600px;
+
+  --step-1: 8px;
+  --step-2: 12px;
+  --step-3: 16px;
+  --step-4: 24px;
+  --step-5: 32px;
+  --step-6: 48px;
 }
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial,
-    sans-serif;
-  line-height: 1.45;
-  text-rendering: optimizeLegibility;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .page {
-  min-height: 100%;
+  min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 28px 16px;
+  padding: var(--step-6) var(--step-3);
 }
 
-.card {
+.thanks {
   width: 100%;
   max-width: var(--maxw);
-  padding: 34px 22px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+}
+
+.editorial-head {
+  margin-bottom: var(--step-6);
+}
+
+.editorial-line {
+  height: 1px;
+  background: linear-gradient(to right, var(--line), var(--accent-line));
+  margin-bottom: var(--step-3);
 }
 
 .brand {
-  letter-spacing: 0.18em;
-  text-transform: lowercase;
-  font-size: 12px;
+  margin: 0;
   color: var(--muted);
-  margin-bottom: 18px;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
 }
 
-.title {
-  margin: 0 0 10px 0;
-  font-size: 26px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+.abstract-mark {
+  margin: var(--step-2) 0 0;
+  width: 120px;
+  display: none;
+}
+
+.abstract-mark svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.abstract-mark path {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 35px);
+  line-height: 1.24;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .lead {
-  margin: 0 0 18px 0;
+  margin: var(--step-4) 0 0;
   font-size: 16px;
-  color: var(--text);
-}
-
-.divider {
-  border: 0;
-  border-top: 1px solid var(--line);
-  margin: 18px 0 16px 0;
+  line-height: 1.5;
 }
 
 .hint {
-  margin: 0 0 18px 0;
-  font-size: 14px;
+  margin: var(--step-5) 0 0;
   color: var(--muted);
 }
 
 .button {
+  margin-top: var(--step-4);
   display: inline-block;
   width: 100%;
+  border: 1px solid var(--button-bg);
+  border-radius: 0;
+  background: var(--button-bg);
+  color: var(--button-text);
   text-align: center;
-  padding: 14px 16px;
-  border-radius: 999px;
-  background: var(--btn);
-  color: var(--btnText);
   text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  border: 1px solid var(--btn);
-  transition: transform 120ms ease, background-color 120ms ease,
-    border-color 120ms ease, opacity 120ms ease;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  padding: 15px 18px;
+  transition: background-color 140ms ease, color 140ms ease;
 }
 
 .button:hover {
-  opacity: 0.92;
+  background: var(--button-bg-hover);
 }
 
-.button:active {
-  transform: translateY(1px);
-}
-
-/* Accessible focus */
-.button:focus,
 .button:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: 3px;
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
-.footnote {
-  margin: 16px 0 0 0;
-  font-size: 12px;
-  color: var(--muted);
+.variant-mark .abstract-mark {
+  display: block;
 }
 
-.url {
-  white-space: nowrap;
-  font-weight: 600;
-  color: var(--text);
-}
-
-/* Slightly roomier on larger screens */
-@media (min-width: 520px) {
-  .card {
-    padding: 40px 34px;
+@media (max-width: 420px) {
+  .page {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
-  .title {
-    font-size: 28px;
+
+  h1 {
+    letter-spacing: 0.03em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
   }
 }
